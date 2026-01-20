@@ -13,10 +13,10 @@ type FilterProps = {
 
 export function Filter({ label, options, value, isLoading, onChange}: FilterProps){
     return (
-        <div className="border-2 border-blue-100 my-2 py-2 px-1 w-1/5">
-            <label htmlFor="filterYear">
+        <div className="my-2 px-1 text-lg">
+            <label htmlFor="filterYear" className="font-bold">
                 {label}
-              <select id="filterYear"
+              <select className="border-2 font-normal block"
                 value={value ?? ""}
                 onChange={(e) => {
                  onChange(e.target.value || undefined)
