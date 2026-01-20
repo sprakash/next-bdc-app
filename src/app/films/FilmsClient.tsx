@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { Filter } from './components/Filter';
 import { Pagination } from "./components/Pagination";
+import { FilmGrid } from './components/FilmGrid';
 
 type Film = {
   id: string;
@@ -18,17 +19,26 @@ export default function FilmsClient({
   initialNextOffset,
   initialTotalCount,
   years,
+  initialYear,
+  initialSubject,
+  subjects,
 }: {
   initialFilms: Film[];
   initialNextOffset?: string;
   initialTotalCount: number;
   years: string[];
+  initialYear?: string;
+  initialSubject?: string;
+  subjects: string[];
 }) {
   const [page, setPage] = useState(1);
   const [films, setFilms] = useState(initialFilms);
   const [totalCount, setTotalCount] = useState(initialTotalCount);
-  const [year, setYear] = useState<string | undefined>();
+  const [year, setYear] = useState<string | undefined>(initialYear);
+  const [subject, setSubject] = useState<string | undefined>(initialSubject);
   const [isLoading, setIsLoading] = useState(false);
+  const [hideDefaultPosters, setHideDefaultPosters] = useState(false);
+
 
   const hasNext = page * PAGE_SIZE < totalCount;
   const start = totalCount === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;
@@ -40,10 +50,22 @@ export default function FilmsClient({
     initialNextOffset,   // page 2
   ]);
 
-  async function loadFirstPage(selectedYear?: string) {
+  async function loadFirstPage(filters: {
+    year?: string, 
+    subject?: string;
+  }) {
+
+    const params = new URLSearchParams();
+
+    if(filters.year) params.set("year", filters.year);
+    if(filters.subject) params.set("subject", filters.subject);
+
     setIsLoading(true);
+
+    const query = params.toString();
+
     const res = await fetch(
-      `/api/films?year=${selectedYear ?? ""}`
+     query ? `/api/films?${query}` : `/api/films`
     );
     const data = await res.json();
 
@@ -58,8 +80,23 @@ export default function FilmsClient({
 
   async function loadPage(nextPage: number) {
     setIsLoading(true);
+    const params = new URLSearchParams();
+
     const offset = offsets[nextPage - 1];
-    const res = await fetch(`/api/films?offset=${offset ?? ""}&year=${year ?? ""}`);
+
+    if(offset) params.set("offset", offset);
+    if(year) params.set("year", year);
+    if(subject) params.set("subject", subject);
+
+    console.log("LOAD PAGE DEBUG", {
+      nextPage,
+      offsetFromState: offsets[nextPage - 1],
+      year,
+      subject,
+    });
+
+
+    const res = await fetch(`/api/films?${params.toString()}`);
     const data = await res.json();
   
 
@@ -78,35 +115,47 @@ export default function FilmsClient({
  
   return (
     <main className="ml-5 min-h-[200px]">
-      { isLoading ? (
-        <div className="flex items-center gap-2 py-3">
-          <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">
-            Loading films…
-          </span>
-        </div>
-      ) : (
-        <section>
-            <h1 className="text-lg font-bold mt-5">Films</h1>
+      <h1 className="text-2xl font-bold mt-5 mb-4">Films</h1>
+
+      
+       <section className="flex gap-6">
+        {/* Left column: Filters */}
+        <aside className="w-1/5 flex flex-col gap-4">
             <Filter 
-              years={years} 
-              year={year} 
-              isLoading={false} 
+              label="Filter by Year"
+              options={years.map((y) => ({label: y, value: y}))} 
+              value={year}
+              isLoading={isLoading} 
               onChange={(value)=>{ 
                 setYear(value); 
-                loadFirstPage(value)
+                loadFirstPage({year: value, subject});
               }}
             />
-            <ul>
-              {films.map((film, index) => (
-                <li key={film.id}>
-                  <Link href={`/films/${film.id}`}>{film.title}</Link>
-                </li>
-              ))}
-            </ul>
+            <Filter 
+              label="Filter by Subject"
+              options={subjects.map((s) => ({label: s, value: s}))} 
+              value={subject}
+              isLoading={isLoading} 
+              onChange={(value)=>{ 
+                setSubject(value); 
+                loadFirstPage({year, subject:value});
+              }}
+            />
 
-          
-
+            <div className="my-2">
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                checked={hideDefaultPosters}
+                onChange={(e) => setHideDefaultPosters(e.target.checked)}
+                className="accent-blue-500"
+              />
+              Show only films with Posters
+            </label>
+          </div>
+        </aside>
+        {/* Right column: Pagination + Grid */}
+        <section className="flex-1 flex flex-col gap-4">
             <Pagination 
               page={page}
               hasNext={hasNext}
@@ -118,9 +167,16 @@ export default function FilmsClient({
               totalCount={totalCount}
             />
 
+          {isLoading ? (
+                  <div className="flex justify-center items-center min-h-[300px]">
+                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                  </div>
+                ) : (
+            <FilmGrid films={hideDefaultPosters 
+            ? films.filter(film => film.posterUrl?.filename !== "poster.png") : films}/>
+          )}
         </section>
-      )}
-
+      </section>
     </main>
   );
 }

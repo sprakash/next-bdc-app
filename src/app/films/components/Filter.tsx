@@ -1,27 +1,32 @@
-type FilterProps = {
-    years: string[];
-    year?: string;
-    isLoading: boolean;
-    onChange: (year?:string) => void;
+type FilterOption = {
+    label: string;
+    value: string;
 }
 
-export function Filter({ years, year, isLoading, onChange}: FilterProps){
+type FilterProps = {
+    label: string;
+    options: FilterOption[];
+    value?: string;
+    isLoading: boolean;
+    onChange: (value?:string) => void;
+}
+
+export function Filter({ label, options, value, isLoading, onChange}: FilterProps){
     return (
         <div className="border-2 border-blue-100 my-2 py-2 px-1 w-1/5">
             <label htmlFor="filterYear">
-                Filter by Year:{" "}
+                {label}
               <select id="filterYear"
-                value={year ?? ""}
+                value={value ?? ""}
                 onChange={(e) => {
-                  const value = e.target.value || undefined;
-                  onChange(value);
+                 onChange(e.target.value || undefined)
                 }}
               >
                 <option value="">All</option>
 
-                {years.map((y) => (
-                  <option key={y} value={y}>
-                    {y}
+                {options?.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
                   </option>
                 ))}
               </select>
