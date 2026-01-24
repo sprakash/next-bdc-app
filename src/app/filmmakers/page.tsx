@@ -1,3 +1,9 @@
+import { getFilmmakers } from "../lib/filmmakers";
+import FilmmakersClient from "./FilmmakersClient";
+
 export default async function FilmmakersPage() {
-  return <h1>Filmmakers</h1>;
+  const initialData = await getFilmmakers();
+  return (
+    <FilmmakersClient initialFilmmakers={initialData.filmmaker}/>
+  )
 }

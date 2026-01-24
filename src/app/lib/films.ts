@@ -1,4 +1,4 @@
-import { getUniqueFieldValues } from "@/lib/baseUtils";
+import { getUniqueFieldValues, fetchSingleAirtableRecord } from '@/lib/baseUtils';
 import { bdcBase } from "../../lib/bdcbase";
 
 type Film = {
@@ -8,6 +8,22 @@ type Film = {
   year?: string;
   summary?: string;
   posterUrl?: string;
+  directors?: {
+    id: string;
+    name: string;
+  };
+  producers?: {
+    id: string;
+    name: string;
+  };
+  cameras?: {
+    id: string;
+    name: string;
+  };
+  editors?: {
+    id: string;
+    name: string;
+  }
 };
 
 type FilmDetal = {
@@ -127,12 +143,12 @@ export async function getFilms({
 
     if (year) {
       formulas.push(`FIND('${year}', {Name (from Year)})`);
-      console.log(" yes we are looking for year", year);
+      // console.log(" yes we are looking for year", year);
     }
 
     if (subject) {
       formulas.push(`FIND("${subject}", ARRAYJOIN({Tags}))`);
-      console.log(" yes we are looking for subject", subject);
+      // console.log(" yes we are looking for subject", subject);
     }
 
     const filterFormula =
@@ -155,7 +171,7 @@ export async function getFilms({
     });
 
     if (!res.ok) {
-        throw new Error("Failed to fetch films from Airtable");
+        throw new Error("Failed to fetch FILMS from Airtable");
     }
 
     const data = await res.json();
@@ -183,24 +199,11 @@ export async function getFilms({
 }
 
 export  async function getFilmById(id: string) {
-  const url = new URL(
-    `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${process.env.AIRTABLE_FILMS_TABLE_ID}/${id}`
-  )
-
-  const res = await fetch(url.toString(), {
-    headers: {
-      AUthorization: `Bearer ${process.env.AIRTABLE_ACCESS_TOKEN}`,
-    },
-    cache: "no-store",
-  });
-
-  if(!res.ok) {
-    throw new Error("Failed to fetch film");
-  }
-
-  const data = await res.json();
+  const data = await fetchSingleAirtableRecord(process.env.AIRTABLE_FILMS_TABLE_ID!, id);
   const fields = data.fields;
-  console.log(" S U B J E C T S ", fields.Tags);
+   console.log(" F I L M  ", fields);
+
+
 
   return {
     id: data.id,
@@ -216,6 +219,35 @@ export  async function getFilmById(id: string) {
     subjects: Array.isArray(fields.Tags)
       ? fields.Tags
       : [],
-    trailer: fields.Trailer
+    trailer: fields.Trailer,
+    website: fields.Website,
+    directors: Array.isArray(fields.Director) && 
+    Array.isArray(fields["Name (from Director)"])
+    ? fields.Director.map((id: string, index: number) => ({
+        id,
+        name: fields["Name (from Director)"][index],
+      }))
+    : [],
+    producers: Array.isArray(fields.Producer) && 
+    Array.isArray(fields["Name (from Producer)"])
+    ? fields.Producer.map((id: string, index: number) => ({
+        id,
+        name: fields["Name (from Producer)"][index],
+      }))
+    : [],
+    cameras: Array.isArray(fields["Camera / Cinematographer"]) && 
+    Array.isArray(fields["Name (from Camera Person"])
+    ? fields["Camera / Cinematographer"].map((id: string, index: number) => ({
+        id,
+        name: fields["Name (from Camera Person)"][index],
+      }))
+    : [],
+    editors: Array.isArray(fields.Editor) && 
+    Array.isArray(fields["Name (from Editor)"])
+    ? fields.Editor.map((id: string, index: number) => ({
+        id,
+        name: fields["Name (from Editor)"][index],
+      }))
+    : []
   };
 }

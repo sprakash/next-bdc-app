@@ -20,7 +20,7 @@ export default async function FilmPage({
              <img
               src={film.posterUrl.url}
               alt={`${film.title} poster`} 
-              className="w-1/2 object-contain"
+              className="w-2/3 object-contain"
             />
             )} 
         </div>
@@ -58,7 +58,79 @@ export default async function FilmPage({
               </Link>
             </div>
           )}
-          
+
+          {film.directors && film.directors.length > 0 && (
+            <div className="mt-4">
+              <h2 className="font-semibold mb-2">Director{film.directors.length > 1 ? "s" : ""}</h2>
+              <ul className="flex flex-wrap gap-2">
+                {film.directors.map((director) => (
+                  <li
+                    key={director.id}
+                    className="px-2 py-1 bg-blue-100 rounded text-sm hover:bg-blue-50 transition"
+                  >
+                    <Link href={`/filmmakers/${director.id}`}>
+                      {director.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {film.producers && film.producers.length > 0 && (
+            <div className="mt-4">
+              <h2 className="font-semibold mb-2">Producer{film.producers.length > 1 ? "s" : ""}</h2>
+              <ul className="flex flex-wrap gap-2">
+                {film.producers.map((producer) => (
+                  <li
+                    key={producer.id}
+                    className="px-2 py-1 bg-blue-100 rounded text-sm hover:bg-blue-50 transition"
+                  >
+                    <Link href={`/filmmakers/${producer.id}`}>
+                      {producer.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {film.cameras && film.cameras.length > 0 && (
+            <div className="mt-4">
+              <h2 className="font-semibold mb-2">Camera / Cinematographer{film.cameras.length > 1 ? "s" : ""}</h2>
+              <ul className="flex flex-wrap gap-2">
+                {film.cameras.map((camera) => (
+                  <li
+                    key={camera.id}
+                    className="px-2 py-1 bg-blue-100 rounded text-sm hover:bg-blue-50 transition"
+                  >
+                    <Link href={`/filmmakers/${camera.id}`}>
+                      {camera.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {film.editors && film.editors.length > 0 && (
+            <div className="mt-4">
+              <h2 className="font-semibold mb-2">Editor{film.cameras.length > 1 ? "s" : ""}</h2>
+              <ul className="flex flex-wrap gap-2">
+                {film.editors.map((editor) => (
+                  <li
+                    key={editor.id}
+                    className="px-2 py-1 bg-blue-100 rounded text-sm hover:bg-blue-50 transition"
+                  >
+                    <Link href={`/filmmakers/${editor.id}`}>
+                      {editor.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+                    
           {film.subjects.length > 0 && (
             <div className="mt-4">
                 
