@@ -160,7 +160,7 @@ export async function getFilms({
 
     if (filterFormula) {
       url.searchParams.set("filterByFormula", filterFormula);
-      console.log("url check", url.toString(), " formula ", filterFormula);
+      // console.log("url check", url.toString(), " formula ", filterFormula);
     }
 
     const res = await fetch(url.toString(), {
@@ -178,7 +178,7 @@ export async function getFilms({
     const countData = await countAllFilms({ subject, year });
     const totalCount = countData > data.records.length ? countData : data.records.length;
 
-    console.log(" just length ", totalCount);
+    // console.log(" just length ", totalCount);
 
   return {
     films: data.records.map((r: any) => ({
@@ -201,7 +201,7 @@ export async function getFilms({
 export  async function getFilmById(id: string) {
   const data = await fetchSingleAirtableRecord(process.env.AIRTABLE_FILMS_TABLE_ID!, id);
   const fields = data.fields;
-   console.log(" F I L M  ", fields);
+  //  console.log(" F I L M  ", fields);
 
 
 

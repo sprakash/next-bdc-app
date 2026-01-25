@@ -39,7 +39,7 @@ export async function fetchAirtableData(
 
     if(params) {
         url.search = params.toString();
-        console.log(" URL ", url.search)
+        // console.log(" URL ", url.search)
     }
 
     const res = await fetch(url.toString(), {

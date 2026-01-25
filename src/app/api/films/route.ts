@@ -8,7 +8,7 @@ export async function GET(request: Request) {
   const year = searchParams.get("year") ?? undefined;
   const includeYears = searchParams.get("includeYears") === "true";
 
-  console.log("🧪 API subject param:", subject);
+  // console.log("🧪 API subject param:", subject);
 
   const data = await getFilms({
     pageSize: 20,

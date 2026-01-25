@@ -1,10 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Loader2 } from "lucide-react";
-import { Filter } from './components/Filter';
-import { Pagination } from "./components/Pagination";
+import { Filter } from '../components/Filter';
+import { Pagination } from "../components/Pagination";
 import { FilmGrid } from './components/FilmGrid';
 
 type Film = {
@@ -75,7 +74,7 @@ export default function FilmsClient({
     setTotalCount(data.totalCount);
     setIsLoading(false);
 
-    console.log(" total loadFirstPage", totalCount)
+    // console.log(" total loadFirstPage", totalCount)
   }
 
   async function loadPage(nextPage: number) {
@@ -88,12 +87,12 @@ export default function FilmsClient({
     if(year) params.set("year", year);
     if(subject) params.set("subject", subject);
 
-    console.log("LOAD PAGE DEBUG", {
-      nextPage,
-      offsetFromState: offsets[nextPage - 1],
-      year,
-      subject,
-    });
+    // console.log("LOAD PAGE DEBUG", {
+    //   nextPage,
+    //   offsetFromState: offsets[nextPage - 1],
+    //   year,
+    //   subject,
+    // });
 
 
     const res = await fetch(`/api/films?${params.toString()}`);
@@ -109,7 +108,7 @@ export default function FilmsClient({
     setPage(nextPage);
     setIsLoading(false);
 
-    console.log(" total loadPage", data.totalCount)
+    // console.log(" total loadPage", data.totalCount)
   }
 
  

@@ -16,7 +16,7 @@ export async function getYears(): Promise<YearRecord[]>{
     cache: "no-store",
   });
 
-  console.log(res, " response years ");
+  // console.log(res, " response years ");
 
   if(!res.ok) {
     throw new Error("Failed to fetch years from base");
@@ -24,7 +24,7 @@ export async function getYears(): Promise<YearRecord[]>{
 
   const data = await res.json();
 
-  console.log(" year records ",  data.records);
+  // console.log(" year records ",  data.records);
   return data.records.map((r: any) => ({
     id: r.id,
   }))

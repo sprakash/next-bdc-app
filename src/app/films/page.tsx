@@ -10,7 +10,7 @@ export default async function FilmsPage({ searchParams, } : {
 }) {
   const { year } = await searchParams;
   const {subject} = await searchParams;
-    console.log(await searchParams, " search Params");
+    // console.log(await searchParams, " search Params");
 
   const years = await getAvailableYears();
   const subjects = await getAvailableSubjects();

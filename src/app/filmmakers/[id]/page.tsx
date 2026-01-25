@@ -2,11 +2,11 @@ import { getFilmmakerById } from "@/app/lib/filmmakers";
 import { getFilmById } from "@/app/lib/films";
 import Link from "next/link";
 import {
-  Globe,
-  Instagram,
-  Youtube,
-  Linkedin,
-  Film
+    Globe,
+    Instagram,
+    Youtube,
+    Linkedin,
+    Film
 } from "lucide-react";
 
 export default async function FilmmakerDetailPage({
@@ -24,8 +24,6 @@ export default async function FilmmakerDetailPage({
             )
         )
         : [];
-
-    console.log(" filmmaker roles ", filmmakerData.roles.length);
 
     return (
         <main className="flex flex-col items-center justify-center px-4 py-8 ">
@@ -51,7 +49,7 @@ export default async function FilmmakerDetailPage({
                             <h2 className="font-semibold mb-2">Films</h2>
                             <ul className="flex flex-wrap gap-2 w-2/3">
                                 {filmmakersFilms.map((film, index) => (
-                                    <li key={film.id} className="  px-2 py-1
+                                    <li key={film.id} className="px-2 py-1
   bg-blue-100 font-medium
   rounded
   text-sm
@@ -78,7 +76,7 @@ export default async function FilmmakerDetailPage({
                                 {filmmakerData.roles.map((role, index) => (
                                     <li
                                         key={index}
-                                        className="  px-2 py-1
+                                        className="px-2 py-1
   bg-orange-100 font-medium
   rounded
   text-sm
@@ -106,7 +104,7 @@ export default async function FilmmakerDetailPage({
                                 {filmmakerData.subjects.map((s) => (
                                     <li
                                         key={s}
-                                        className="  px-2 py-1
+                                        className="px-2 py-1
   bg-purple-100 font-medium
   rounded
   text-sm
@@ -118,7 +116,7 @@ export default async function FilmmakerDetailPage({
   hover:shadow-sm
   hover:-translate-y-[1px]"
                                     >
-                                        <Link href={{ pathname: "/films", query: { subject: s } }}>{s}</Link>
+                                        <Link href={{ pathname: "/filmmakers", query: { filmmakerSubject: s } }}>{s}</Link>
                                     </li>
                                 ))}
                             </ul>
@@ -147,82 +145,74 @@ export default async function FilmmakerDetailPage({
                         </div>
                     )}
                     {(filmmakerData.web ||
-  filmmakerData.imdb ||
-  filmmakerData.insta ||
-  filmmakerData.yt ||
-  filmmakerData.linkedIn) && (
-  <div className="mt-4">
-    <h2 className="font-semibold mb-2">Links</h2>
+                        filmmakerData.imdb ||
+                        filmmakerData.insta ||
+                        filmmakerData.yt ||
+                        filmmakerData.linkedIn) && (
+                            <div className="mt-4">
+                                <h2 className="font-semibold mb-2">Links</h2>
 
-    <div className="flex items-center gap-4 text-gray-600">
-      {filmmakerData.web && (
-        <Link
-          href={filmmakerData.web}
-          target="_blank"
-          className="hover:text-black transition"
-          aria-label="web"
-        >
-          <Globe className="h-5 w-5" />
-        </Link>
-      )}
+                                <div className="flex items-center gap-4 text-gray-600">
+                                    {filmmakerData.web && (
+                                        <Link
+                                            href={filmmakerData.web}
+                                            target="_blank"
+                                            className="hover:text-black transition"
+                                            aria-label="web"
+                                        >
+                                            <Globe className="h-5 w-5" />
+                                        </Link>
+                                    )}
 
-      {filmmakerData.imdb && (
-        <Link
-          href={filmmakerData.imdb}
-          target="_blank"
-          className="hover:text-yellow-600 transition"
-          aria-label="IMDb"
-        >
-          <Film className="h-5 w-5" />
-        </Link>
-      )}
+                                    {filmmakerData.imdb && (
+                                        <Link
+                                            href={filmmakerData.imdb}
+                                            target="_blank"
+                                            className="hover:text-yellow-600 transition"
+                                            aria-label="IMDb"
+                                        >
+                                            <Film className="h-5 w-5" />
+                                        </Link>
+                                    )}
 
-      {filmmakerData.insta && (
-        <Link
-          href={filmmakerData.insta}
-          target="_blank"
-          className="hover:text-pink-600 transition"
-          aria-label="insta"
-        >
-          <Instagram className="h-5 w-5" />
-        </Link>
-      )}
+                                    {filmmakerData.insta && (
+                                        <Link
+                                            href={filmmakerData.insta}
+                                            target="_blank"
+                                            className="hover:text-pink-600 transition"
+                                            aria-label="insta"
+                                        >
+                                            <Instagram className="h-5 w-5" />
+                                        </Link>
+                                    )}
 
-      {filmmakerData.yt && (
-        <Link
-          href={filmmakerData.yt}
-          target="_blank"
-          className="hover:text-red-600 transition"
-          aria-label="yt"
-        >
-          <Youtube className="h-5 w-5" />
-        </Link>
-      )}
+                                    {filmmakerData.yt && (
+                                        <Link
+                                            href={filmmakerData.yt}
+                                            target="_blank"
+                                            className="hover:text-red-600 transition"
+                                            aria-label="yt"
+                                        >
+                                            <Youtube className="h-5 w-5" />
+                                        </Link>
+                                    )}
 
-      {filmmakerData.linkedIn && (
-        <Link
-          href={filmmakerData.linkedIn}
-          target="_blank"
-          className="hover:text-blue-600 transition"
-          aria-label="linkedIn"
-        >
-          <Linkedin className="h-5 w-5" />
-        </Link>
-      )}
-    </div>
-  </div>
-)}
+                                    {filmmakerData.linkedIn && (
+                                        <Link
+                                            href={filmmakerData.linkedIn}
+                                            target="_blank"
+                                            className="hover:text-blue-600 transition"
+                                            aria-label="linkedIn"
+                                        >
+                                            <Linkedin className="h-5 w-5" />
+                                        </Link>
+                                    )}
+                                </div>
+                            </div>
+                        )}
 
                 </div>
             </section>
         </main>
     )
 }
-
-// imdb: filmmakersData.fields.IMDB,
-//         linkedIn: filmmakersData.fields.linkedIn,
-//         insta: filmmakersData.fields.insta,
-//         yt: filmmakersData.fields.yt,
-//         web: filmmakersData.fields.web,
-//         films: filmmakersData.fields.Films,
-//         other: filmmakersData.fields["Other Skills"]

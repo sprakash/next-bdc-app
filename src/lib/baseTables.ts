@@ -14,8 +14,8 @@ export async function listTables() {
   }
 
   const data = await res.json();
+  // console.log(data, " tables ");
 
-  console.log(data, " tables ");
   return data.tables.map((t: any) => ({
     id: t.id,
     name: t.name,

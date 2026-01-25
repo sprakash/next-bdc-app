@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {Button} from "./components/ui/button"
-import { getYears } from "./lib/years";
 import { listTables } from "../lib/baseTables";
 
 export  default async function Home() {

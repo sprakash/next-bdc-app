@@ -1,4 +1,5 @@
 import { fetchAirtableData, fetchSingleAirtableRecord } from "@/lib/baseUtils";
+import { bdcBase } from "@/lib/bdcbase";
 
 type Filmmaker = {
     id: string,
@@ -25,22 +26,48 @@ type FilmmakerDetail = {
     phone?: string
 }
 
+type GetFilmmakersArgs = {
+    role?: string,
+    filmmakerSubject?: string
+}
+
 type GetFilmmakersResult = {
   filmmaker: Filmmaker[];
   nextOffset?: string;
   totalCount: number;
 };
 
-export async function getFilmmakers() : Promise<GetFilmmakersResult>{
+export async function getFilmmakers(
+    args: GetFilmmakersArgs = {}
+):Promise<GetFilmmakersResult>{
   //get base access 
   //get all filmmakers 
 
   const filmmakerData = await fetchAirtableData(process.env.AIRTABLE_FILMMAKERS_TABLE_ID!);
-  return {
-    filmmaker: filmmakerData.records.map((r: any) => ({
+
+  const filmmakersCollection = filmmakerData.records.map((r: any) => ({
         id: r.id,
         name: r.fields.Name,
-    })),
+        roles: Array.isArray(r.fields["Name (from Roles)"])? r.fields["Name (from Roles)"] : [],
+        filmmakerSubjects: Array.isArray(r.fields["Subject of Films"]) ? r.fields["Subject of Films"] : [],
+    }));
+  
+   let filtered = filmmakersCollection;
+
+    if (args.role) {
+        filtered = filtered.filter(f =>
+            f.roles.includes(args.role!)
+        );
+    }
+
+    if (args.filmmakerSubject) {
+        filtered = filtered.filter(f =>
+            f.filmmakerSubjects.includes(args.filmmakerSubject!)
+        );
+    }
+
+  return { 
+    filmmaker: filtered,
     totalCount: filmmakerData.records.length,
   }
 
@@ -64,4 +91,26 @@ export async function getFilmmakerById(id: string) {
         films: filmmakersData.fields.Films
     }
     
+}
+
+export async function getAvailableFilmmakerSubjects(): Promise<string[]>{
+    const filmmakerSubjects = new Set<string>();
+
+    await bdcBase("Filmmakers").select({
+        fields: ["Subject of Films"],
+        pageSize: 100,
+    })
+    .eachPage((records, fetchNextPage) => {
+        for(const record of records) {
+            const values = record.get("Subject of Films") as string[] | undefined;
+
+            if(Array.isArray(values)) {
+                values.forEach((subject) => { filmmakerSubjects.add(subject)})
+            }
+        }
+        fetchNextPage();
+    });
+
+    return Array.from(filmmakerSubjects).sort();
+
 }
