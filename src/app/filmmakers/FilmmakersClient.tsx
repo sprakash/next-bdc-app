@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { Filter } from "../components/Filter";
 import { useRouter } from "next/navigation";
+import { FilmmakerGrid } from "./components/FilmmakerGrid";
+import { Loader2 } from "lucide-react";
 
 
 type Filmmaker = {
@@ -30,6 +32,7 @@ export default function FilmmakersClient(
       const [role, setRole] = useState(initialRole);
       const [subject, setSubject] = useState(initialSubject);
       const [isLoading, setIsLoading] = useState(false);
+      const [totalCount, setTotalCount] = useState(initialFilmmakers.length);
      
     
     async function loadFirstPage(filters: {
@@ -45,9 +48,10 @@ export default function FilmmakersClient(
         const res = await fetch(`/api/filmmakers?${params.toString()}`);
         const data = await res.json();
 
-        console.log(" Filtered ", data);
+        // console.log(" Filtered ", data);
         setFilmmakers(data.filmmaker);
         setIsLoading(false);
+        setTotalCount(data.filmmaker.length);
         router.push(`/filmmakers?${params.toString()}`, { scroll: false });
     }
     
@@ -62,12 +66,10 @@ export default function FilmmakersClient(
     }
 
  return (
-    <section className="p-4">
-        <h1 className="font-bold text-3xl">Filmmakers</h1>
-            <section className="flex">
-                <section className="flex gap-6">
-                        {/* Left column: Filters */}
-                        <aside className="w-1/5 flex flex-col gap-4">
+  <main className="ml-5 min-h-[200px]">
+    <h1 className="text-2xl font-bold mt-5 mb-4">Films</h1>
+       <section className="flex gap-6">
+                    <aside className="w-1/5 flex flex-col gap-4">
                             <Filter 
                               label="Filter by Roles"
                               options={roles.map((r) => ({label: r, value: r}))} 
@@ -82,16 +84,19 @@ export default function FilmmakersClient(
                               isLoading={isLoading} 
                               onChange={onFilmmakerSubjectChange}
                             />
-                        </aside>
-                </section>
-                <section className="w-1/2">
-                    {filmmakers && filmmakers.map(((e, index) => 
-                        <div key={index}>
-                            <Link href={`/filmmakers/${e.id}`}>{e.name}</Link>
-                        </div>
-                     ))}
-                </section>
-            </section>
-     </section>
-
+                    </aside>
+                    <section className="flex-1 flex flex-col gap-4">
+                        <section>
+                             { isLoading ? (
+                                <div className="flex justify-center items-center min-h-[300px]">
+                                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                                </div>
+                                ) : (
+                                <FilmmakerGrid filmmakers={filmmakers} totalCount={totalCount} />
+                                ) 
+                            }
+                        </section>
+                    </section>
+         </section>
+    </main>
 )}

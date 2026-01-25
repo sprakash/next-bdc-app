@@ -29,7 +29,7 @@ export default async function FilmmakerDetailPage({
         <main className="flex flex-col items-center justify-center px-4 py-8 ">
             <Link href="/filmmakers" className="mb-5 border-1 bg-blue-100 px-3 py-2">Back to Filmmakers</Link>
             <section className="flex gap-4">
-                <div className="w-1/2 flex  items-center justify-end mt-20" >
+                <div className="w-1/2 flex  items-start justify-end mt-20" >
                     <img src={filmmakerData.photoInfo[0].url} alt={`${filmmakerData.name} headshot`} className="w-1/2 object-contain" />
                 </div>
                 <div className="w-1/2">

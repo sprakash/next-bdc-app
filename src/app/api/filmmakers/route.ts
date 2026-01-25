@@ -9,6 +9,9 @@ export async function GET(request: Request) {
         role, 
         filmmakerSubject,
     });
-    console.log(" route ", data);
-    return NextResponse.json(data);
+    console.log(" ROUTE finds ", data.filmmaker.length);
+    return NextResponse.json({
+        filmmaker : data.filmmaker,
+        totalCount : data.filmmaker.length
+    });
 }

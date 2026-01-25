@@ -48,6 +48,8 @@ export async function getFilmmakers(
   const filmmakersCollection = filmmakerData.records.map((r: any) => ({
         id: r.id,
         name: r.fields.Name,
+        bio: r.fields.Bio,
+        headshot: r.fields.Headshot[0].url,
         roles: Array.isArray(r.fields["Name (from Roles)"])? r.fields["Name (from Roles)"] : [],
         filmmakerSubjects: Array.isArray(r.fields["Subject of Films"]) ? r.fields["Subject of Films"] : [],
     }));

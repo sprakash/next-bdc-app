@@ -171,7 +171,7 @@ export default function FilmsClient({
                     <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
                   </div>
                 ) : (
-            <FilmGrid films={hideDefaultPosters 
+            <FilmGrid films={hideDefaultPosters
             ? films.filter(film => film.posterUrl?.filename !== "poster.png") : films}/>
           )}
         </section>
