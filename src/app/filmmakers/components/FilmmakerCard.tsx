@@ -42,28 +42,30 @@ export function FilmmakerCard({ id, name, bio, headshot }: FilmmakerCardProps) {
           {/* Hover overlay */}
           <div className="
                 absolute inset-0
-                bg-neutral-900/93
-                text-neutral-100
+                bg-yellow-50/93
+                text-neutral-700
                 px-4 py-4
-                flex flex-col justify-between
+                flex flex-col gap-3
                 translate-y-full
                 transition-transform duration-300 ease-out
                 group-hover:translate-y-0
               ">
-            <p className="text-xl leading-loose line-clamp-6 pt-8">
+            <p className="text-lg leading-snug line-clamp-9 my-6">
               {bio || "No bio available."}
             </p>
 
-            <div className="pt-3">
+            <div className="justify-center flex">
               <span
                 className="
+                  bg-yellow-100
+                  uppercase
                   inline-block
-                  text-2xl font-semibold
-                  text-purple-300
-                  border border-purple-400
+                  text-lg font-semibold
+                  border
+                  text-purple-900
                   px-3 py-1
                   rounded-sm
-                  hover:bg-purple-400 hover:text-neutral-900
+                  hover:bg-purple-600 hover:text-neutral-300
                   transition
                 "
               >

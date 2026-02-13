@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FilmmakerCard } from "./FilmmakerCard";
+import { getLastName } from "@/lib/catalogUtils";
 
 type Filmmaker = {
     id: string;
@@ -9,13 +10,15 @@ type Filmmaker = {
 }
 
 type FilmGridProps = {
-    filmmakers: Filmmaker[],
-    totalCount: number
+    filmmakers: Filmmaker[];
+    totalCount: number;
+    activeLetter?: string;
 }
 
 export function FilmmakerGrid({
     filmmakers,
-    totalCount
+    totalCount, 
+    activeLetter,
 }: FilmGridProps) {
     // console.log("just image files", films.map((film) => (film.posterUrl)))
 
@@ -29,15 +32,34 @@ export function FilmmakerGrid({
                 </span>
                 <hr className="pb-4" />
             </section>
-            <section
-                className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-10 pt-8">
-                {filmmakers && filmmakers.map(((e, index) =>
-                    <div key={index}>
-                        {/* <Link href={`/filmmakers/${e.id}`}>{e.name}</Link> */}
-                        <FilmmakerCard name={e.name} id={e.id} bio={e.bio} headshot={e.headshot} />
-                    </div>
-                ))}
+            <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-10 pt-8">
+                {filmmakers && filmmakers.map((f) => {
+                    const isHighlighted = 
+                    !!activeLetter && 
+                    getLastName(f.name)[0]?.toUpperCase() === activeLetter;
+
+                    return (
+                        <div
+                            key={f.id}
+                            className={`
+                                transition-all duration-300 ease-in-out
+                                rounded-md   /* <- match card rounding */
+                                ${
+                                isHighlighted
+                                    ? "shadow-[0_0_15px_3px_rgba(128,0,128,0.5)] scale-[1.02]"
+                                    : "border border-transparent"
+                                }
+                            `}
+                            >
+                         <FilmmakerCard 
+                            name={f.name} 
+                            id={f.id} 
+                            bio={f.bio} 
+                            headshot={f.headshot}
+                        />
+                        </div>
+                    );
+                })}
             </section>
         </section>
-    )
-}
+    )}
