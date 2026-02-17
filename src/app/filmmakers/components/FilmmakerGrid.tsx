@@ -37,6 +37,7 @@ export function FilmmakerGrid({
                     const isHighlighted = 
                     !!activeLetter && 
                     getLastName(f.name)[0]?.toUpperCase() === activeLetter;
+                    
 
                     return (
                         <div

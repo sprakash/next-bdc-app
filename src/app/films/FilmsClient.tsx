@@ -113,15 +113,35 @@ export default function FilmsClient({
 
  
   return (
-    <main className="ml-5 min-h-[200px]">
-      <h1 className="text-2xl font-bold mt-5 mb-4">Films</h1>
+    <main className="min-h-[200px]">
+    <div className="flex items-center pt-4 px-8 
+                bg-gradient-to-r from-gray-800 to-black
+                min-h-[250px]">
+        <div className="flex-1 border-b-1 border-gray-600">
+            <h1 className="text-5xl font-bold text-gray-200 mb-4 mt-20">
+            Film Catalog
+            </h1>
+            <p className="text-gray-300 max-w-lg pb-4 text-sm">
+              Discover films that amplify voices, challenge narratives, and shape culture.            
+            </p>
+        </div>
+
+        <div className="flex-shrink-0 ml-8">
+            <img 
+            src="/images/slides/filmcatalog-hero.png" 
+            alt="Hero Image" 
+            className="h-[200px] w-auto object-contain"
+            />
+        </div>
+    </div>
 
       
        <section className="flex gap-6">
         {/* Left column: Filters */}
-        <aside className="w-1/5 flex flex-col gap-4">
+        <aside className="w-1/5 flex flex-col ml-5">
+          <h1 className="text-2xl font-light mt-20">Filters</h1>
             <Filter 
-              label="Filter by Year"
+              label="By Film Year"
               options={years.map((y) => ({label: y, value: y}))} 
               value={year}
               isLoading={isLoading} 
@@ -131,7 +151,7 @@ export default function FilmsClient({
               }}
             />
             <Filter 
-              label="Filter by Subject"
+              label="By Film Subject"
               options={subjects.map((s) => ({label: s, value: s}))} 
               value={subject}
               isLoading={isLoading} 
@@ -142,19 +162,19 @@ export default function FilmsClient({
             />
 
             <div className="my-2">
-            <label className="flex items-center gap-2">
+            <label className="flex items-center gap-2 text-sm font-semibold text-gray-600">
               <input
                 type="checkbox"
                 checked={hideDefaultPosters}
                 onChange={(e) => setHideDefaultPosters(e.target.checked)}
                 className="accent-blue-500"
               />
-              Show only films with Posters
+              show films with posters
             </label>
           </div>
         </aside>
         {/* Right column: Pagination + Grid */}
-        <section className="flex-1 flex flex-col gap-4">
+        <section className="flex-1 flex flex-col gap-4 pr-12">
             <Pagination 
               page={page}
               hasNext={hasNext}

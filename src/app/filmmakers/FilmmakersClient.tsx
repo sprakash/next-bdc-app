@@ -1,6 +1,5 @@
 "use client"
-import Link from "next/link";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Filter } from "../components/Filter";
 import { useRouter } from "next/navigation";
 import { FilmmakerGrid } from "./components/FilmmakerGrid";
@@ -39,10 +38,10 @@ export default function FilmmakersClient(
       const [activeLetter, setActiveLetter] = useState<string | undefined>(undefined);
 
       const allLetters = getAvailableLetters(initialFilmmakers); // from full list
+      
+      const orderedFilmmakers = useMemo(() => {
+        if(!activeLetter) return filmmakers;
 
-      let orderedFilmmakers = filmmakers; 
-
-      if(activeLetter) {
         const matches: typeof filmmakers = [];
         const rest: typeof filmmakers = [];
 
@@ -56,8 +55,10 @@ export default function FilmmakersClient(
                 rest.push(f);
             }
         }
-        orderedFilmmakers = [...matches, ...rest];
-      }
+
+        return [...matches, ...rest];
+      }, [filmmakers, activeLetter])
+
     
 
     async function loadFirstPage(filters: {
@@ -91,26 +92,49 @@ export default function FilmmakersClient(
     }
 
  return (
-  <main className="ml-5 min-h-[200px]">
-    <h1 className="text-2xl font-bold mt-5 mb-4">Films</h1>
+  <main className="min-h-[200px]">
+    <div className="flex items-center pt-4 px-8 
+                bg-gradient-to-r from-gray-800 to-black
+                min-h-[250px]">
+        <div className="flex-1  border-b-1 border-gray-600">
+            <h1 className="text-5xl font-bold text-gray-200 mb-4 mt-20">
+            Filmmakers Directory
+            </h1>
+            <p className="text-gray-300 max-w-lg pb-8 text-sm">
+            Explore our community of filmmakers, their stories, and their work.
+            </p>
+        </div>
+
+        <div className="flex-shrink-0 ml-8">
+            <img 
+            src="/images/slides/filmmaker-directory-hero-black.png" 
+            alt="Hero Image" 
+            className="h-[200px] w-auto object-contain"
+            />
+        </div>
+    </div>
+
        <section className="flex gap-6">
-                    <aside className="w-1/5 flex flex-col gap-4">
-                            <Filter 
-                              label="Filter by Roles"
-                              options={roles.map((r) => ({label: r, value: r}))} 
-                              value={role}
-                              isLoading={isLoading} 
-                              onChange={onRoleChange}
-                            />
-                            <Filter 
-                              label="Filter by Subjects"
-                              options={subjects.map((s) => ({label: s, value: s}))} 
-                              value={subject}
-                              isLoading={isLoading} 
-                              onChange={onFilmmakerSubjectChange}
-                            />
-                    </aside>
-                    <section className="flex-1 flex flex-col gap-4">
+                <section className="ml-5">
+                    <h1 className="text-2xl font-light mt-20">Filters</h1>
+                            <aside className="flex flex-col gap-4">
+                                    <Filter 
+                                    label="By Filmmaker Roles"
+                                    options={roles.map((r) => ({label: r, value: r}))} 
+                                    value={role}
+                                    isLoading={isLoading} 
+                                    onChange={onRoleChange}
+                                    />
+                                    <Filter 
+                                    label="By Filmmaker Subjects"
+                                    options={subjects.map((s) => ({label: s, value: s}))} 
+                                    value={subject}
+                                    isLoading={isLoading} 
+                                    onChange={onFilmmakerSubjectChange}
+                                    />
+                            </aside>
+                    </section>
+                    <section className="flex-1 flex flex-col gap-4 mt-5">
                         <section>
                              { isLoading ? (
                                 <div className="flex justify-center items-center min-h-[300px]">

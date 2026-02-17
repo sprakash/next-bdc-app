@@ -116,3 +116,19 @@ export async function getAvailableFilmmakerSubjects(): Promise<string[]>{
     return Array.from(filmmakerSubjects).sort();
 
 }
+
+export async function searchFilmmakers(query: string) {
+    const params = new URLSearchParams();
+     params.set(
+        "filterByFormula",
+        `SEARCH(LOWER("${query}"), LOWER({Name}))`
+    );
+    const data = await fetchAirtableData("Filmmakers", params);
+    return data.records.map((record: any) => ({
+        id: record.id,
+        name: record.fields.Name,
+        bio: record.fields.Bio,
+        headshot: record.fields.Headshot[0].url
+    }));
+
+}

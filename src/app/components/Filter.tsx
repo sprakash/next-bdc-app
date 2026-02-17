@@ -13,20 +13,20 @@ type FilterProps = {
 
 export function Filter({ label, options, value, isLoading, onChange}: FilterProps){
     return (
-        <div className="my-2 px-1 text-lg">
-            <label htmlFor="filterYear" className="font-bold">
+        <div className="my-2 px-2 py-1 text-lg bg-gray-100 text-gray-500">
+            <label htmlFor="filterYear" className="text-sm mb-10">
                 {label}
-              <select className="border-2 font-normal block"
+              <select className="border-0 font-normal block w-full"
                 value={value ?? ""}
                 onChange={(e) => {
                  onChange(e.target.value || undefined)
                 }}
               >
-                <option value="">All</option>
+                <option value="" className="text-sm">ALL</option>
 
                 {options?.map((opt) => (
-                  <option key={opt.value} value={opt.value}>
-                    {opt.label}
+                  <option className="capitalize text-md text-gray-400 font-bold border-0" key={opt.value} value={opt.value}>
+                    <span className="py-3">{opt.label}</span> 
                   </option>
                 ))}
               </select>

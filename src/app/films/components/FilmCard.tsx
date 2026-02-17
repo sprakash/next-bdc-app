@@ -13,7 +13,7 @@ export function FilmCard({ id, title, year, summary, posterUrl }: FilmCardProps)
   return (
     <Link href={`/films/${id}`} className="group">
       <Card className="h-full overflow-hidden transition-all hover:shadow-lg">
-        <div className="aspect-[2/3] bg-muted flex items-center justify-center">
+        <div className="aspect-[3/4] bg-muted flex items-center justify-center">
           {posterUrl ? (
             <img
               src={posterUrl.url}
@@ -28,12 +28,12 @@ export function FilmCard({ id, title, year, summary, posterUrl }: FilmCardProps)
         </div>
 
         <CardContent className="px-3">
-          <h3 className="font-semibold italic leading-tight line-clamp-2">
+          <h3 className="font-semibold leading-tight line-clamp-2 text-center text-md pb-2">
             {title}
           </h3>
 
           {year && (
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-muted-foreground mt-1 text-center pb-4">
               {year}
             </p>
           )}

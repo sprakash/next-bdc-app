@@ -1,4 +1,4 @@
-import { getUniqueFieldValues, fetchSingleAirtableRecord } from '@/lib/baseUtils';
+import { getUniqueFieldValues, fetchSingleAirtableRecord, fetchAirtableData } from '@/lib/baseUtils';
 import { bdcBase } from "../../lib/bdcbase";
 
 type Film = {
@@ -40,7 +40,7 @@ type GetFilmsResult = {
   films: Film[];
   nextOffset?: string;
   totalCount: number;
-};
+}
 
 export async function getAvailableYears(): Promise<string[]>{
     const years = await getUniqueFieldValues({
@@ -115,7 +115,6 @@ async function countAllFilms({ subject, year}: {
   
   return total;
 }
-
 
 export async function getFilms({
         pageSize = 20, 
@@ -250,4 +249,23 @@ export  async function getFilmById(id: string) {
       }))
     : []
   };
+}
+
+export async function searchFilms(query: string) {
+  const params = new URLSearchParams();
+
+  //case-insensitive partial search
+
+  params.set(
+    "filterByFormula",
+    `SEARCH(LOWER("${query}"), LOWER({Name}))`
+  );
+
+  const data = await fetchAirtableData("Films", params);
+
+  return data.records.map((record: any) => ({
+    id: record.id,
+    title: record.fields.Name,
+    posterUrl: record.fields.Poster?.[0] ?? null,
+  }));
 }
