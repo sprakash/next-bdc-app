@@ -36,14 +36,6 @@ export  default async function Home() {
       </section>
         
         {/* <pre>{JSON.stringify(tables, null, 2)}</pre> */}
-
-        <Link href="/films">
-          <Button> Film Catalog</Button> 
-        </Link> 
-         <br />  
-        <Link href="/filmmakers">
-          <Button> Filmmakers Directory</Button> 
-        </Link>   
       </main>
     </div>
   );

@@ -15,7 +15,6 @@ export function Header() {
         { href: "/filmmakers", label: "Filmmakers" },
         { href: "/#fiscal", label: "Fiscal Sponsorship" },
         { href: "/#donate", label: "Donate" },
-
     ];
 
     return (

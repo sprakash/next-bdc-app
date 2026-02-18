@@ -6,7 +6,7 @@ import Image from "next/image";
 const images = [
   "/images/slides/filmcatalog-hero.png",
   "/images/slides/meetbdc.jpg",
-  "/images/slides/filmmakers.png"
+  "/images/slides/filmmaker-directory-hero-black.png"
 ];
 
 export default function HeroSlideshow() {
@@ -39,7 +39,7 @@ export default function HeroSlideshow() {
       </button>
 
       {/* Slides container */}
-      <div className="w-full h-full overflow-hidden">
+      <div className="w-2/3 h-full overflow-hidden pt-10">
         <div
           className="flex h-full transition-transform duration-700 ease-in-out py-5"
           style={{ transform: `translateX(-${index * 100}%)` }}
