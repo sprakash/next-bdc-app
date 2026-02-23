@@ -54,7 +54,6 @@ export async function fetchAirtableData(
     }
     
     return res.json();
-
 }
 
 export async  function fetchSingleAirtableRecord(

@@ -31,9 +31,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header/>
-        <section className="py-40">
+        <section className="py-20">
           {children}
         </section>
+
       </body>
     </html>
   );

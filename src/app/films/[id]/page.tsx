@@ -32,12 +32,8 @@ export default async function FilmPage({
           <hr />
           {film.year && (
               <p className="font-semibold mt-8">
-                Year: <Link href={{pathname:"/films", query:{year: film.year}}} 
-                        className="bg-yellow-100
-                           text-gray-800 px-2 py-1 
-                           hover:bg-blue-950 
-                           hover:text-blue-200 
-                           hover:cursor-pointer">{film.year}</Link>
+                Year: <Link href={{pathname:"/films", query:{year: film.year}}}
+                        className="bg-yellow-100 text-gray-800 px-2 py-1 hover:bg-blue-950 hover:text-blue-200 hover:cursor-pointer">{film.year}</Link>
               </p>
           )}
 

@@ -5,6 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --breakpoint-sm: 55em;
+  --breakpoint-lg: 75em;
+  --breakpoint-gridgap: 1180px;
+  --breakpoint-md: 60em;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);

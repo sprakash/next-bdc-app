@@ -3,16 +3,21 @@ import {Button} from "./components/ui/button"
 import { listTables } from "../lib/baseTables";
 import HeroSlideshow from "./components/HeroSlideshow";
 import { Instagram } from "lucide-react";
+import MemberSpotlight from './components/MemberSpotlight';
+import FilmmakerPreview from "./components/FilmmakerPreview";
+import FilmPreview from "./components/FilmPreview";
+import Fiscal from "./components/Fiscal";
+import Mission from "./components/Mission";
+import ContactArea from "./components/Contact";
 
 export  default async function Home() {
-
   return (
     <div className="min-h-screen">
       <main>
         <HeroSlideshow/>
         <section className="flex text-center flex-col py-10 border-b">
           <h1 className="text-4xl text-gray-700 font-extrabold">Black Documentary Collective</h1>
-          <div className="text-sm pt-5 text-gray-700 font-semibold">&quot;I want to do with the documentary what jazz musicians did with music.&quot; - St, Clair Bourne, Founder</div>
+          <div className="text-sm pt-5 text-gray-700 font-semibold px-10">&quot;I want to do with the documentary what jazz musicians did with music.&quot; - St, Clair Bourne, Founder</div>
         </section>
 
       <section className="pt-5">
@@ -34,8 +39,14 @@ export  default async function Home() {
           data-elfsight-app-lazy
         ></div>
       </section>
-        
         {/* <pre>{JSON.stringify(tables, null, 2)}</pre> */}
+        <MemberSpotlight/>
+        <FilmmakerPreview/>
+        <FilmPreview/>
+        <hr/>
+        <Fiscal/>
+        <ContactArea/>
+        <Mission/>
       </main>
     </div>
   );

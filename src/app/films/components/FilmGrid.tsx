@@ -16,7 +16,7 @@ export function FilmGrid({films}:FilmGridProps) {
     // console.log("just image files", films.map((film) => (film.posterUrl)))
     return (
         <section
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4">
+            className="grid grid-cols-2 mid:grid-cols-3 lg:grid-cols-4 gap-4">
                 {films.map((film) => (
                         <FilmCard
                         key={film.id}

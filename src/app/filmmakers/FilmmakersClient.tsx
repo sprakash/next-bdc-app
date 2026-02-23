@@ -93,10 +93,8 @@ export default function FilmmakersClient(
 
  return (
   <main className="min-h-[200px]">
-    <div className="flex items-center pt-4 px-8 
-                bg-gradient-to-r from-gray-800 to-black
-                min-h-[250px]">
-        <div className="flex-1  border-b-1 border-gray-600">
+    <div className="flex items-center pt-4 px-8 bg-linear-to-r from-gray-800 to-black min-h-[250px]">
+        <div className="flex-1  border-b border-gray-600">
             <h1 className="text-5xl font-bold text-gray-200 mb-4 mt-20">
             Filmmakers Directory
             </h1>
@@ -105,7 +103,7 @@ export default function FilmmakersClient(
             </p>
         </div>
 
-        <div className="flex-shrink-0 ml-8">
+        <div className="shrink-0 ml-8">
             <img 
             src="/images/slides/filmmaker-directory-hero-black.png" 
             alt="Hero Image" 
@@ -116,8 +114,8 @@ export default function FilmmakersClient(
 
        <section className="flex gap-6">
                 <section className="ml-5">
-                    <h1 className="text-2xl font-light mt-20">Filters</h1>
-                            <aside className="flex flex-col gap-4">
+                            <aside className="flex flex-col gap-4 w-60 fixed left-0 ml-5">
+                                <h1 className="text-2xl font-light mt-20">Filters</h1>
                                     <Filter 
                                     label="By Filmmaker Roles"
                                     options={roles.map((r) => ({label: r, value: r}))} 
@@ -134,7 +132,7 @@ export default function FilmmakersClient(
                                     />
                             </aside>
                     </section>
-                    <section className="flex-1 flex flex-col gap-4 mt-5">
+                    <section className="flex-1 flex flex-col gap-4 mt-5 ml-64">
                         <section>
                              { isLoading ? (
                                 <div className="flex justify-center items-center min-h-[300px]">

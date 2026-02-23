@@ -26,7 +26,7 @@ export function FilmmakerCard({ id, name, bio, headshot }: FilmmakerCardProps) {
             gap-0
           "
       >
-        <div className="relative aspect-[4/5] overflow-hidden">
+        <div className="relative overflow-hidden sm:aspect-square mid:aspect-[4/5] lg:aspect-none">
           {headshot ? (
             <img
               src={headshot}
@@ -40,17 +40,8 @@ export function FilmmakerCard({ id, name, bio, headshot }: FilmmakerCardProps) {
           )}
 
           {/* Hover overlay */}
-          <div className="
-                absolute inset-0
-                bg-yellow-50/93
-                text-neutral-700
-                px-4 py-4
-                flex flex-col gap-3
-                translate-y-full
-                transition-transform duration-300 ease-out
-                group-hover:translate-y-0
-              ">
-            <p className="text-lg leading-snug line-clamp-9 my-6">
+          <div className="absolute inset-0 bg-yellow-50/93 text-neutral-700 px-4 py-4 flex flex-col gap-3 translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0">
+            <p className="text-lg leading-snug line-clamp-6 my-6">
               {bio || "No bio available."}
             </p>
 

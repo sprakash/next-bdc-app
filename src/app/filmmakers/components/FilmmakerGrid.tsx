@@ -32,7 +32,7 @@ export function FilmmakerGrid({
                 </span>
                 <hr className="pb-4" />
             </section>
-            <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-10 pt-8">
+            <section className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 pt-8 gridgap:gap-4">
                 {filmmakers && filmmakers.map((f) => {
                     const isHighlighted = 
                     !!activeLetter && 
