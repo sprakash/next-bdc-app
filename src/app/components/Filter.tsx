@@ -32,7 +32,7 @@ export function Filter({
 }: FilterProps) {
   return (
     <div className="my-2 px-2 flex flex-col gap-2">
-      <label className="text-sm font-medium text-muted-foreground">
+      <label className="text-sm font-medium text-muted-foreground text-center sm:text-left">
         {label}
       </label>
 

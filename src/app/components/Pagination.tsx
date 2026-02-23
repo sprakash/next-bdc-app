@@ -23,7 +23,7 @@ export function Pagination({
   totalCount,
 }: PaginationProps) {
   return (
-    <div className="flex items-center justify-between border-b pb-4 bg-gradient-to-r from-purple-100 to-white pt-5 px-10 uppercase">
+    <div className="flex text-sm items-center justify-between border-b pb-4 bg-gradient-to-r from-purple-100 to-white pt-5 px-3  uppercase">
       
       
       {/* Left side — Results meta */}
@@ -40,7 +40,7 @@ export function Pagination({
       </div>
 
       {/* Right side — Controls */}
-      <div className="flex items-center gap-2 text-2xl">
+      <div className="flex items-center gap-2 pt-4">
         <Button
           variant="outline"
           size="lg"
@@ -48,7 +48,7 @@ export function Pagination({
           disabled={page === 1 || isLoading}
           className="gap-1 cursor-pointer"
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronLeft className="h-2 w-2" />
           Prev
         </Button>
 
@@ -64,7 +64,7 @@ export function Pagination({
           className="gap-1 cursor-pointer hover:bg-purple-400 hover:text-white"
         >
           Next
-          <ChevronRight className="h-4 w-4" />
+          <ChevronRight className="h-2 w-2" />
         </Button>
       </div>
     </div>

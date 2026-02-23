@@ -93,17 +93,17 @@ export default function FilmmakersClient(
 
  return (
   <main className="min-h-[200px]">
-    <div className="flex items-center pt-4 px-8 bg-linear-to-r from-gray-800 to-black min-h-[250px]">
+    <div className="flex-none sm:flex items-center pt-4 px-8 bg-linear-to-r from-gray-800 to-black min-h-[250px]">
         <div className="flex-1  border-b border-gray-600">
             <h1 className="text-5xl font-bold text-gray-200 mb-4 mt-20">
             Filmmakers Directory
             </h1>
-            <p className="text-gray-300 max-w-lg pb-8 text-sm">
+            <p className="text-gray-300 max-w-2xl pb-8 text-lg">
             Explore our community of filmmakers, their stories, and their work.
             </p>
         </div>
 
-        <div className="shrink-0 ml-8">
+        <div className="shrink-0 ml-8 sm:mt-15">
             <img 
             src="/images/slides/filmmaker-directory-hero-black.png" 
             alt="Hero Image" 
@@ -112,10 +112,10 @@ export default function FilmmakersClient(
         </div>
     </div>
 
-       <section className="flex gap-6">
+       <section className="flex-none sm:flex gap-6">
                 <section className="ml-5">
-                            <aside className="flex flex-col gap-4 w-60 fixed left-0 ml-5">
-                                <h1 className="text-2xl font-light mt-20">Filters</h1>
+                            <aside className="flex-none sm:flex flex-col gap-4 w-3/4 sm:w-60 sm:fixed left-0 ml-5">
+                                <h1 className="text-2xl font-light mt-10 sm:mt-20 text-center">Filters</h1>
                                     <Filter 
                                     label="By Filmmaker Roles"
                                     options={roles.map((r) => ({label: r, value: r}))} 
@@ -132,7 +132,7 @@ export default function FilmmakersClient(
                                     />
                             </aside>
                     </section>
-                    <section className="flex-1 flex flex-col gap-4 mt-5 ml-64">
+                    <section className="flex-1 flex flex-col gap-4 mt-5 mx-10 sm:ml-64">
                         <section>
                              { isLoading ? (
                                 <div className="flex justify-center items-center min-h-[300px]">

@@ -10,7 +10,7 @@ export function AlphabetStrip({activeLetter,
         const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)); // A-Z
         return (
             <section>
-                <div className="flex items-center gap-2 overflow-x-auto py-2">
+                <div className="flex items-center gap-2 flex-wrap py-2">
                     <button 
                     onClick={() => onSelectLetter(undefined)}
                     className={`px-2 py-1 rounded font-semibold ${

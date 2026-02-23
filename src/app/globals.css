@@ -8,6 +8,8 @@
   --breakpoint-sm: 55em;
   --breakpoint-lg: 75em;
   --breakpoint-gridgap: 1180px;
+  --breakpoint-filmcard: 830px;
+  --breakpoint-filmmaker:1187px;
   --breakpoint-md: 60em;
   --color-background: var(--background);
   --color-foreground: var(--foreground);

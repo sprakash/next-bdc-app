@@ -13,8 +13,8 @@ export default async function FilmPage({
     return (
       <main className="flex flex-col items-center justify-center px-4 py-8 mt-10">
       <Link href="/films" className="mb-5 border-1 bg-blue-100 px-3 py-2">Back to Films</Link>
-      <section className="flex gap-4">
-        <div className="w-1/2 flex items-start justify-end">
+      <section className="flex-none filmcard:flex gap-4">
+        <div className="w-full filmcard:w-1/2 flex justify-center filmcard:items-start filmcard:justify-end">
 
           {film.posterUrl && (
              <img
@@ -25,7 +25,7 @@ export default async function FilmPage({
             )} 
         </div>
         
-        <div className="w-1/2">
+        <div className="w-full filmcard:w-1/2">
           <h1 className="text-3xl font-extrabold italic text-gray-900 dark:text-gray-100 drop-shadow-sm my-4">
             {film.title}
           </h1>
@@ -38,7 +38,7 @@ export default async function FilmPage({
           )}
 
           {film.summary && (
-            <p className="my-4 w-2/3 text-justify">{film.summary}</p>
+            <p className="my-4 w-full filmcard:w-2/3 text-justify">{film.summary}</p>
           )}
 
           {film.trailer && (
@@ -58,7 +58,7 @@ export default async function FilmPage({
           {film.directors && film.directors.length > 0 && (
             <div className="mt-4">
               <h2 className="font-semibold mb-2">Director{film.directors.length > 1 ? "s" : ""}</h2>
-              <ul className="flex flex-wrap gap-2">
+              <ul className="flex-none filmcard:flex filmcard:flex-wrap gap-2">
                 {film.directors.map((director) => (
                   <li
                     key={director.id}
@@ -131,7 +131,7 @@ export default async function FilmPage({
             <div className="mt-4">
                 
               <h2 className="font-semibold mb-2">Subjects</h2>
-              <ul className="flex flex-wrap gap-2 w-2/3">
+              <ul className="flex flex-wrap gap-2 filmcard:w-2/3 w-full">
                 {film.subjects.map((s) => (
                   <li
                     key={s}

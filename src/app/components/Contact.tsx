@@ -1,39 +1,34 @@
 "use client";
 
 import { useState } from "react";
-import { Contact } from 'lucide-react';
 
 export default function ContactArea() {
-  const [status, setStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
+  const [error, setError] = useState<string | null>(null);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setStatus("loading");
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.get("name"),
-          email: formData.get("email"),
-          message: formData.get("message"),
-        }),
-      });
-
-      if (!res.ok) throw new Error("Failed");
-
-      setStatus("success");
-      e.currentTarget.reset();
-    } catch {
-      setStatus("error");
+    // Let browser validation run first
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
     }
+
+    const formData = new FormData(form);
+    const name = formData.get("name") as string;
+    const email = formData.get("email") as string;
+    const message = formData.get("message") as string;
+
+    const subject = encodeURIComponent(`Website Contact from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\n${message}`
+    );
+
+    window.location.href = `mailto:bdcnewyork@gmail.com?subject=${subject}&body=${body}`;
+
+    form.reset();
   }
 
   return (
@@ -73,23 +68,10 @@ export default function ContactArea() {
 
           <button
             type="submit"
-            disabled={status === "loading"}
-            className="w-full bg-black text-white uppercase tracking-wide py-3 hover:opacity-80 transition disabled:opacity-50"
+            className="w-full bg-black text-white uppercase tracking-wide py-3 hover:opacity-80 transition"
           >
-            {status === "loading" ? "Sending..." : "Send Message"}
+            Send Message
           </button>
-
-          {status === "success" && (
-            <p className="text-green-600 text-sm">
-              Thank you. Your message has been sent.
-            </p>
-          )}
-
-          {status === "error" && (
-            <p className="text-red-600 text-sm">
-              Something went wrong. Please try again.
-            </p>
-          )}
         </form>
       </div>
     </section>

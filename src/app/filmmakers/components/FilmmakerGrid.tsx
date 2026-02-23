@@ -25,14 +25,14 @@ export function FilmmakerGrid({
     console.log(" HEADSHOT INFO ", filmmakers[0]);
 
     return (
-        <section className="pr-20">
+        <section className="sm:pr-20">
             <section>
                 <span className="font-bold my-4 text-lg">
                     Found <span className="text-2xl text-purple-500">{totalCount} </span> Filmmakers that match this combination of filters.
                 </span>
                 <hr className="pb-4" />
             </section>
-            <section className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 pt-8 gridgap:gap-4">
+            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 pt-8 gridgap:gap-4">
                 {filmmakers && filmmakers.map((f) => {
                     const isHighlighted = 
                     !!activeLetter && 
