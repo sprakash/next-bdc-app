@@ -4,30 +4,29 @@ import FilmmakersClient from "./FilmmakersClient";
 
 export default async function FilmmakersPage({
   searchParams,
-} : {
-  searchParams:{
-    role?: Promise<{role?: string}>,
-    filmmakerSubject?: Promise<{filmmakerSubject?: string}>
-  }
+}: {
+  searchParams: Promise<{
+    role?: string;
+    filmmakerSubject?: string;
+  }>;
 }) {
-  const { role } = await searchParams;
-  const { filmmakerSubject } = await searchParams;
-
-  console.log(role, " is role(s) ", filmmakerSubject, " is filmmakerSubject(s) ");
+  const { role, filmmakerSubject } = await searchParams;
 
   const initialData = await getFilmmakers({
-    role: role,
-    filmmakerSubject: filmmakerSubject
+    role,
+    filmmakerSubject,
   });
 
   const roles = await getAvailableRoles();
   const filmmakerSubjects = await getAvailableFilmmakerSubjects();
+
   return (
-    <FilmmakersClient 
-      initialFilmmakers={initialData.filmmaker} 
-      roles={roles} 
+    <FilmmakersClient
+      initialFilmmakers={initialData.filmmaker}
+      roles={roles}
       subjects={filmmakerSubjects}
       initialRole={role}
-      initialSubject={filmmakerSubject}/>
-  )
+      initialSubject={filmmakerSubject}
+    />
+  );
 }

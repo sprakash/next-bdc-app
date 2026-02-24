@@ -7,7 +7,10 @@ type Film = {
   totalCount: number;
   year?: string;
   summary?: string;
-  posterUrl?: string;
+  posterUrl?: {
+    filename?: string;
+    url?: string;
+  };
   directors?: {
     id: string;
     name: string;
@@ -117,8 +120,8 @@ async function countAllFilms({ subject, year}: {
 }
 
 export async function getFilms({
-        pageSize = 20, 
-        offset, 
+        pageSize = 20,
+        offset,
         subject,
         year,
     }: {

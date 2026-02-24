@@ -5,7 +5,10 @@ type Film = {
     title: string;
     year?: string;
     summary?: string;
-    posterUrl?: string;
+    posterUrl?: {
+        filename?: string;
+        url?: string;
+    };
 }
 
 type FilmGridProps = {

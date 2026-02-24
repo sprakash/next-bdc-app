@@ -6,7 +6,10 @@ type FilmCardProps = {
   title: string
   year?: string
   summary?: string
-  posterUrl?: string
+  posterUrl?: {
+    filename?: string;
+    url?:string;
+  }
 }
 
 export function FilmCard({ id, title, year, summary, posterUrl }: FilmCardProps) {

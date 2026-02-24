@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { getFilms } from '@/app/lib/films';
 
-type FilmRecord = {
-    id: string;
-    title?: string;
-    filename: string;
-    posterUrl?: { url: string};
+type Film = {
+  id: string;
+  title: string;
+  posterUrl?: {
+    filename?: string;
+    url?: string
+  };
 };
 
 
@@ -19,7 +21,7 @@ export default async function FilmPreview() {
         previewFilms = {preview: []};
     }
 
-    const records: FilmRecord[] = previewFilms?.films ?? [];
+    const records: Film[] = previewFilms?.films ?? [];
     // // 2️⃣ Extract first 12 clean values
     console.log(records);
     const preview = records.filter(film => film.posterUrl?.filename !== "poster.png").slice(0,44).map((record) => ({

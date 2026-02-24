@@ -5,25 +5,9 @@ type Filmmaker = {
     id: string,
     name: string,
     bio: string,
-    headshot?: string
-}
-
-type FilmmakerDetail = {
-    id: string,
-    name: string,
-    bio: string,
-    films?: string[],
-    roles: string[],
-    subjects: string[],
     headshot?: string,
-    website?: string,
-    imdb?: string,
-    linkedin?: string,
-    facebook?: string,
-    twitter?: string,
-    instagram?: string,
-    youtube?: string,
-    phone?: string
+    roles: string[],
+    filmmakerSubjects: string[]
 }
 
 type GetFilmmakersArgs = {
@@ -45,7 +29,7 @@ export async function getFilmmakers(
 
   const filmmakerData = await fetchAirtableData(process.env.AIRTABLE_FILMMAKERS_TABLE_ID!);
 
-  const filmmakersCollection = filmmakerData.records.map((r: any) => ({
+  const filmmakersCollection: Filmmaker[] = filmmakerData.records.map((r: any) => ({
         id: r.id,
         name: r.fields.Name,
         bio: r.fields.Bio,
@@ -54,7 +38,7 @@ export async function getFilmmakers(
         filmmakerSubjects: Array.isArray(r.fields["Subject of Films"]) ? r.fields["Subject of Films"] : [],
     }));
   
-   let filtered = filmmakersCollection;
+   let filtered: Filmmaker[] = filmmakersCollection;
 
     if (args.role) {
         filtered = filtered.filter(f =>

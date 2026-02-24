@@ -39,7 +39,7 @@ export default function ContactArea() {
         </h3>
 
         <p className="text-neutral-600 mb-10">
-          Have a question or collaboration idea? We'd love to hear from you.
+          Have a question or collaboration idea? We&apos;d love to hear from you.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-6 text-left">

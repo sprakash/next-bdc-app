@@ -73,9 +73,9 @@ export default async function FilmmakerDetailPage({
 
                             <h2 className="font-semibold mb-2">Roles</h2>
                             <ul className="flex flex-wrap gap-2 w-2/3">
-                                {filmmakerData.roles.map((role, index) => (
+                                {filmmakerData.roles.map((role: string) => (
                                     <li
-                                        key={index}
+                                        key={role}
                                         className="px-2 py-1
   bg-orange-100 font-medium
   rounded
@@ -101,7 +101,7 @@ export default async function FilmmakerDetailPage({
 
                             <h2 className="font-semibold mb-2">Subjects</h2>
                             <ul className="flex flex-wrap gap-2 w-2/3">
-                                {filmmakerData.subjects.map((s) => (
+                                {filmmakerData.subjects.map((s:string) => (
                                     <li
                                         key={s}
                                         className="px-2 py-1
@@ -130,9 +130,9 @@ export default async function FilmmakerDetailPage({
                                 <ul className="flex flex-wrap gap-2 w-2/3">
                                     {filmmakerData.other.toString()
                                         .split(/[,|\n]+/)
-                                        .map(s => s.trim())
+                                        .map((s:string) => s.trim())
                                         .filter(Boolean)
-                                        .map(skill => (
+                                        .map((skill:string) => (
                                             <li
                                                 key={skill}
                                                 className="px-1 py-1 text-sm"

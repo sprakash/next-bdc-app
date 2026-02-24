@@ -9,6 +9,10 @@ import { FilmGrid } from './components/FilmGrid';
 type Film = {
   id: string;
   title: string;
+  posterUrl?: {
+    filename?: string;
+    url?: string;
+  }
 };
 
 const PAGE_SIZE = 20;

@@ -2,6 +2,24 @@ import { Button } from "@/app/components/ui/button";
 import { getFilmById } from "@/app/lib/films";
 import Link from "next/link";
 
+type Director= {
+  id: string;
+  name: string;
+  directors: Director[];
+}
+
+type Producer= {
+  id: string;
+  name: string;
+  producers: Producer[];
+}
+
+type Editor= {
+  id: string;
+  name: string;
+  editors: Editor[];
+}
+
 export default async function FilmPage({
   params,
 } : {
@@ -59,7 +77,7 @@ export default async function FilmPage({
             <div className="mt-4">
               <h2 className="font-semibold mb-2">Director{film.directors.length > 1 ? "s" : ""}</h2>
               <ul className="flex-none filmcard:flex filmcard:flex-wrap gap-2">
-                {film.directors.map((director) => (
+                {film.directors.map((director: Director) => (
                   <li
                     key={director.id}
                     className="px-2 py-1 bg-blue-100 rounded text-sm hover:bg-blue-50 transition"
@@ -77,7 +95,7 @@ export default async function FilmPage({
             <div className="mt-4">
               <h2 className="font-semibold mb-2">Producer{film.producers.length > 1 ? "s" : ""}</h2>
               <ul className="flex flex-wrap gap-2">
-                {film.producers.map((producer) => (
+                {film.producers.map((producer: Producer) => (
                   <li
                     key={producer.id}
                     className="px-2 py-1 bg-blue-100 rounded text-sm hover:bg-blue-50 transition"
@@ -113,7 +131,7 @@ export default async function FilmPage({
             <div className="mt-4">
               <h2 className="font-semibold mb-2">Editor{film.cameras.length > 1 ? "s" : ""}</h2>
               <ul className="flex flex-wrap gap-2">
-                {film.editors.map((editor) => (
+                {film.editors.map((editor: Editor) => (
                   <li
                     key={editor.id}
                     className="px-2 py-1 bg-blue-100 rounded text-sm hover:bg-blue-50 transition"
@@ -132,7 +150,7 @@ export default async function FilmPage({
                 
               <h2 className="font-semibold mb-2">Subjects</h2>
               <ul className="flex flex-wrap gap-2 filmcard:w-2/3 w-full">
-                {film.subjects.map((s) => (
+                {film.subjects.map((s: string) => (
                   <li
                     key={s}
                     className="px-2 py-1 bg-blue-100 rounded text-sm hover:bg-blue-50 hover:text-purple-950 hover:cursor-pointer hover:font-medium"
