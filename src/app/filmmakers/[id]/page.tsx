@@ -28,18 +28,18 @@ export default async function FilmmakerDetailPage({
     return (
         <main className="flex flex-col items-center justify-center px-4 py-8 mt-10">
             <Link href="/filmmakers" className="mb-5 border-1 bg-blue-100 px-3 py-2">Back to Filmmakers</Link>
-            <section className="flex gap-4">
-                <div className="w-1/2 flex  items-start justify-end mt-20" >
-                    <img src={filmmakerData.photoInfo[0].url} alt={`${filmmakerData.name} headshot`} className="w-1/2 object-contain" />
+            <section className="flex-none sm:flex gap-4">
+                <div className="flex justify-center w-full sm:w-1/2 sm:flex  sm:items-start sm:justify-end sm:mt-20" >
+                    <img src={filmmakerData.photoInfo[0].url} alt={`${filmmakerData.name} headshot`} className="w-3/5 sm:w-1/2 object-contain" />
                 </div>
-                <div className="w-1/2">
+                <div className="w-full sm:w-1/2">
                     <h1 className="text-5xl font-extrabold italic text-gray-900 dark:text-gray-100 drop-shadow-sm my-4">
                         {filmmakerData.name}
                     </h1>
                     <hr />
                     <div>
                         {filmmakerData.bio && (
-                            <div className="my-4 w-2/3 text-justify">{filmmakerData.bio}</div>
+                            <div className="my-4 w-full sm:w-2/3 text-justify">{filmmakerData.bio}</div>
                         )}
                     </div>
 
