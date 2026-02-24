@@ -52,7 +52,7 @@ export function Header() {
                     className={`
                       uppercase text-sm px-3 py-1 rounded transition-all duration-300
                       ${active
-                        ? "bg-purple-950/30 text-purple-400"
+                        ? "bg-purple-950/30 text-gray-400"
                         : "text-white hover:text-purple-500"
                       }
                     `}

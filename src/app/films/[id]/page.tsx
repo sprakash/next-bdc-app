@@ -43,13 +43,13 @@ export default async function FilmPage({
             )} 
         </div>
         
-        <div className="w-full filmcard:w-1/2">
-          <h1 className="text-3xl font-extrabold italic text-gray-900 dark:text-gray-100 drop-shadow-sm my-4">
+        <div className="w-full">
+          <h1 className="flex justify-center sm:flex-none sm:justify-start  text-3xl font-extrabold italic text-gray-900 dark:text-gray-100 drop-shadow-sm my-4">
             {film.title}
           </h1>
           <hr />
           {film.year && (
-              <p className="font-semibold mt-8">
+              <p className="font-semibold mt-8 text-center gap-2 sm:text-left">
                 Year: <Link href={{pathname:"/films", query:{year: film.year}}}
                         className="bg-yellow-100 text-gray-800 px-2 py-1 hover:bg-blue-950 hover:text-blue-200 hover:cursor-pointer">{film.year}</Link>
               </p>
@@ -60,8 +60,7 @@ export default async function FilmPage({
           )}
 
           {film.trailer && (
-            <div>
-              <h2 className="font-semibold mb-2">Trailer</h2>
+            <div className="text-center sm:text-left filmcard:text-left">
               <Link href={film.trailer} target="_blank" rel="noopener noreferrer">
                 <Button
                   variant="default"
@@ -93,8 +92,8 @@ export default async function FilmPage({
 
           {film.producers && film.producers.length > 0 && (
             <div className="mt-4">
-              <h2 className="font-semibold mb-2">Producer{film.producers.length > 1 ? "s" : ""}</h2>
-              <ul className="flex flex-wrap gap-2">
+              <h2 className="font-semibold mb-2 text-center sm:text-left filmcard:text-left">Producer{film.producers.length > 1 ? "s" : ""}</h2>
+              <ul className="flex flex-wrap gap-2 justify-center sm:justify-start filmcard:justify-start">
                 {film.producers.map((producer: Producer) => (
                   <li
                     key={producer.id}
@@ -111,8 +110,8 @@ export default async function FilmPage({
 
           {film.cameras && film.cameras.length > 0 && (
             <div className="mt-4">
-              <h2 className="font-semibold mb-2">Camera / Cinematographer{film.cameras.length > 1 ? "s" : ""}</h2>
-              <ul className="flex flex-wrap gap-2">
+              <h2 className="font-semibold mb-2 text-center sm:text-left filmcard:text-left">Camera / Cinematographer{film.cameras.length > 1 ? "s" : ""}</h2>
+              <ul className="flex flex-wrap gap-2 justify-center sm:justify-start filmcard:justify-start">
                 {film.cameras.map((camera) => (
                   <li
                     key={camera.id}
@@ -129,8 +128,8 @@ export default async function FilmPage({
 
           {film.editors && film.editors.length > 0 && (
             <div className="mt-4">
-              <h2 className="font-semibold mb-2">Editor{film.cameras.length > 1 ? "s" : ""}</h2>
-              <ul className="flex flex-wrap gap-2">
+              <h2 className="font-semibold mb-2 text-center sm:text-left filmcard:text-left">Editor{film.cameras.length > 1 ? "s" : ""}</h2>
+              <ul className="flex flex-wrap gap-2 justify-center sm:justify-start filmcard:justify-start">
                 {film.editors.map((editor: Editor) => (
                   <li
                     key={editor.id}
@@ -147,9 +146,8 @@ export default async function FilmPage({
                     
           {film.subjects.length > 0 && (
             <div className="mt-4">
-                
-              <h2 className="font-semibold mb-2">Subjects</h2>
-              <ul className="flex flex-wrap gap-2 filmcard:w-2/3 w-full">
+              <h2 className="font-semibold mb-2 text-center sm:text-left filmcard:text-left">Subjects</h2>
+              <ul className="flex flex-wrap gap-2 justify-center sm:justify-start filmcard:justify-start filmcard:w-2/3 w-full text-center sm:text-base justify-center">
                 {film.subjects.map((s: string) => (
                   <li
                     key={s}

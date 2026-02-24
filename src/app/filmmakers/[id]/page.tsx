@@ -32,8 +32,8 @@ export default async function FilmmakerDetailPage({
                 <div className="flex justify-center w-full sm:w-1/2 sm:flex  sm:items-start sm:justify-end sm:mt-20" >
                     <img src={filmmakerData.photoInfo[0].url} alt={`${filmmakerData.name} headshot`} className="w-3/5 sm:w-1/2 object-contain" />
                 </div>
-                <div className="w-full sm:w-1/2">
-                    <h1 className="text-5xl font-extrabold italic text-gray-900 dark:text-gray-100 drop-shadow-sm my-4">
+                <div className="w-full text-center sm:text-left sm:w-1/2">
+                    <h1 className="text-3xl sm:text-4xl font-extrabold italic text-gray-900 dark:text-gray-100 drop-shadow-sm my-4">
                         {filmmakerData.name}
                     </h1>
                     <hr />
@@ -47,7 +47,7 @@ export default async function FilmmakerDetailPage({
                         <div className="mt-4">
 
                             <h2 className="font-semibold mb-2">Films</h2>
-                            <ul className="flex flex-wrap gap-2 w-2/3">
+                            <ul className="flex flex-wrap justify-center sm:justify-start sm:items-baseline gap-2 w-full  sm:w-2/3">
                                 {filmmakersFilms.map((film, index) => (
                                     <li key={film.id} className="px-2 py-1
   bg-blue-100 font-medium
@@ -72,7 +72,7 @@ export default async function FilmmakerDetailPage({
                         <div className="mt-4">
 
                             <h2 className="font-semibold mb-2">Roles</h2>
-                            <ul className="flex flex-wrap gap-2 w-2/3">
+                            <ul className="flex flex-wrap justify-center sm:justify-start sm:items-baseline gap-2 w-full  sm:w-2/3">
                                 {filmmakerData.roles.map((role: string) => (
                                     <li
                                         key={role}
@@ -100,8 +100,8 @@ export default async function FilmmakerDetailPage({
                         <div className="mt-4">
 
                             <h2 className="font-semibold mb-2">Subjects</h2>
-                            <ul className="flex flex-wrap gap-2 w-2/3">
-                                {filmmakerData.subjects.map((s:string) => (
+                            <ul className="flex flex-wrap justify-center sm:justify-start gap-2 w-full  sm:w-2/3">
+                                {filmmakerData.subjects.map((s: string) => (
                                     <li
                                         key={s}
                                         className="px-2 py-1
@@ -130,9 +130,9 @@ export default async function FilmmakerDetailPage({
                                 <ul className="flex flex-wrap gap-2 w-2/3">
                                     {filmmakerData.other.toString()
                                         .split(/[,|\n]+/)
-                                        .map((s:string) => s.trim())
+                                        .map((s: string) => s.trim())
                                         .filter(Boolean)
-                                        .map((skill:string) => (
+                                        .map((skill: string) => (
                                             <li
                                                 key={skill}
                                                 className="px-1 py-1 text-sm"
@@ -152,7 +152,7 @@ export default async function FilmmakerDetailPage({
                             <div className="mt-4">
                                 <h2 className="font-semibold mb-2">Links</h2>
 
-                                <div className="flex items-center gap-4 text-gray-600">
+                                <div className="flex justify-center sm:justify-start gap-4 text-gray-600">
                                     {filmmakerData.web && (
                                         <Link
                                             href={filmmakerData.web}
