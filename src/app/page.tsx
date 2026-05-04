@@ -31,7 +31,7 @@ export  default async function Home() {
 <div className="elfsight-app-4f00f54b-3ec6-421f-8e7f-fe2a66d75bd6" data-elfsight-app-lazy></div>
       </section>
         {/* <pre>{JSON.stringify(tables, null, 2)}</pre> */}
-        <MemberSpotlight/>
+        {/* <MemberSpotlight/> */}
         <FilmmakerPreview/>
         <FilmPreview/>
         <hr/>
