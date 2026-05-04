@@ -35,7 +35,8 @@ export default async function FilmPreview() {
         <section className="py-20 text-center flex-row justify-center shadow-[gainsboro_0px_0px_20px_1px]" >
             <h3 className="text-neutral-500 text-3xl text-center mb-2 mt-10 uppercase tracking-wide">Film Catalog</h3>
             <p className="my-3">Browse through the <Link href="/films"><span className="font-semibold text-blue-600">work</span></Link> of our filmmakers</p>
-            <div className="px-6 py-5 md:px-16 lg:px-24">
+<div className="px-6 py-5">
+              <div className="max-w-6xl mx-auto">                
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 px-2 sm:px-5 xl:px-25">
                     {preview.map((film) => (
                         <Link
@@ -52,6 +53,7 @@ export default async function FilmPreview() {
                             ></div>
                         </Link>
                     ))}
+                </div>
                 </div>
 
                 <div className="flex justify-center mt-12">

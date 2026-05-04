@@ -39,7 +39,8 @@ export default async function FilmmakerPreview() {
         <section className="py-20 text-center flex-row justify-center">
             <h3 className="text-neutral-500 text-3xl text-center mb-2 mt-10 uppercase tracking-wide">Filmmaker Directory</h3>
             <p className="my-3">Browse through our <Link href="/filmmakers"><span className="font-semibold text-blue-600">directory</span></Link> of talented filmmakers of our community</p>
-            <div className="px-6 py-5 md:px-16 lg:px-24">
+            <div className="px-6 py-5">
+              <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-6">
                     {preview?.map((filmmaker) => (
                         <Link
@@ -62,7 +63,8 @@ export default async function FilmmakerPreview() {
                         </Link>
                     ))}
                 </div>
-
+                </div>
+                
                 <div className="flex justify-center mt-12">
                     <Link
                         href="/filmmakers"

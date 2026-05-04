@@ -163,7 +163,7 @@ export default function FilmsClient({
               }}
             />
 
-            <div className="my-2">
+          {/* <div className="my-2">
             <label className="flex items-center gap-2 text-sm font-semibold text-gray-600">
               <input
                 type="checkbox"
@@ -173,7 +173,7 @@ export default function FilmsClient({
               />
               show films with posters
             </label>
-          </div>
+          </div> */}
         </aside>
         {/* Right column: Pagination + Grid */}
         <section className="flex-1 flex flex-col gap-4 sm:pr-12 sm:ml-64">

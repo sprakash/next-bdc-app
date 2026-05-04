@@ -56,7 +56,7 @@ export function Header() {
                         ? "bg-purple-950/30 text-gray-400"
                         : "text-white hover:text-purple-500"
                       }
-                      ${link.label === "Donate" ? "border border-white hover:bg-white hover:text-purple-950" : ""}
+                      ${link.label === "Donate" ? "border border-white bg-purple-950 text-white" : ""}
                     `}
                   >
                     {link.label}
