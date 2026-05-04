@@ -12,6 +12,7 @@ export function Header() {
 
   const navLinks = [
     { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
     { href: "/films", label: "Films" },
     { href: "/filmmakers", label: "Filmmakers" },
     { href: "/#fiscal", label: "Fiscal Sponsorship" },
@@ -33,15 +34,15 @@ export function Header() {
           <Image
             src="/images/bdc-logo-circle.b0ea323b.png"
             alt="BDC logo"
-            width={120}
-            height={120}
+            width={180}
+            height={180}
             priority
           />
         </Link>
 
         {/* Desktop Navigation (>=800px) */}
         <nav className="hidden [@media(min-width:800px)]:block">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-4">
             {navLinks.map((link) => {
               const active = isActive(link.href);
 
@@ -50,7 +51,7 @@ export function Header() {
                   <Link
                     href={link.href}
                     className={`
-                      uppercase text-sm px-3 py-1 rounded transition-all duration-300
+                      uppercase text-xl px-3 py-1 rounded transition-all duration-300
                       ${active
                         ? "bg-purple-950/30 text-gray-400"
                         : "text-white hover:text-purple-500"
@@ -67,14 +68,14 @@ export function Header() {
 
         {/* Desktop Social Icons */}
         <div className="hidden [@media(min-width:800px)]:flex items-center gap-4 text-gray-500">
-          <a href="https://instagram.com/bdcnewyork" target="_blank" rel="noopener noreferrer">
-            <Instagram size={18} />
+          <a href="https://instagram.com/bdcnewyork" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400">
+            <Instagram size={30} />
           </a>
-          <a href="https://www.youtube.com/user/TheBDCNY/videos" target="_blank" rel="noopener noreferrer">
-            <Youtube size={18} />
+          <a href="https://www.youtube.com/user/TheBDCNY/videos" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400">
+            <Youtube size={30} />
           </a>
-          <a href="https://www.linkedin.com/company/black-documentary-collective-inc/about/" target="_blank" rel="noopener noreferrer">
-            <LinkedinIcon size={18} />
+          <a href="https://www.linkedin.com/company/black-documentary-collective-inc/about/" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400">
+            <LinkedinIcon size={30} />
           </a>
         </div>
 

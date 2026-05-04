@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const images = [
-  "/images/slides/filmcatalog-hero.png",
   "/images/slides/meetbdc.jpg",
+  "/images/slides/filmcatalog-hero.png",
   "/images/slides/filmmaker-directory-hero-black.png"
 ];
 
@@ -30,7 +30,7 @@ export default function HeroSlideshow() {
   }, []);
 
   return (
-    <div className="relative w-full bg-black flex justify-center items-center" style={{ height: 380 }}>
+    <div className="relative w-full bg-black flex justify-center items-center" style={{ height: 700 }}>
       
       {/* Left Arrow */}
       <button
@@ -42,10 +42,10 @@ export default function HeroSlideshow() {
       </button>
 
       {/* Slides container */}
-      <div className="w-2/3 h-full overflow-hidden">
+      <div className="w-4/5 h-full overflow-hidden">
         <div
           className="flex h-full transition-transform duration-700 ease-in-out pt-20"
-          style={{ transform: `translateX(-${index * 100}%)` }}
+           style={{ transform: `translateX(-${index * 100}%)` }}
         >
           {images.map((src) => (
             <div key={src} className="relative min-w-full">
@@ -54,7 +54,7 @@ export default function HeroSlideshow() {
                 alt="Hero image"
                 fill
                 priority
-                className="object-scale-down"
+                className="object-contain"
               />
             </div>
           ))}
