@@ -18,18 +18,22 @@ type FilmGridProps = {
 export function FilmGrid({films}:FilmGridProps) {
     // console.log("just image files", films.map((film) => (film.posterUrl)))
     return (
-        <section
-            className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 px-2">
-                {films.map((film) => (
-                        <FilmCard
-                        key={film.id}
-                        id={film.id}
-                        title={film.title}
-                        year={film.year}
-                        summary={film.summary}
-                        posterUrl={film.posterUrl}
-                        />
-                ))}
-        </section>
+        <div className="px-6 py-5">
+            <div className="max-w-6xl mx-auto">
+                <section
+                    className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 px-2">
+                        {films.map((film) => (
+                                <FilmCard
+                                key={film.id}
+                                id={film.id}
+                                title={film.title}
+                                year={film.year}
+                                summary={film.summary}
+                                posterUrl={film.posterUrl}
+                                />
+                        ))}
+                </section>
+            </div>
+        </div>
     )
 }

@@ -26,6 +26,8 @@ export default async function FilmmakerDetailPage({
         : [];
 
     return (
+        <div className="px-6 py-5">
+              <div className="max-w-6xl mx-auto">
         <main className="flex flex-col items-center justify-center px-4 py-8 mt-10">
             <Link href="/filmmakers" className="mb-5 border-1 bg-blue-100 px-3 py-2">Back to Filmmakers</Link>
             <section className="flex-none sm:flex gap-4">
@@ -214,5 +216,7 @@ export default async function FilmmakerDetailPage({
                 </div>
             </section>
         </main>
+        </div>
+        </div>
     )
 }

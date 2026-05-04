@@ -25,6 +25,8 @@ export function FilmmakerGrid({
     console.log(" HEADSHOT INFO ", filmmakers[0]);
 
     return (
+        <div className="px-6 py-5">
+              <div className="max-w-6xl mx-auto">
         <section className="sm:pr-20">
             <section>
                 <span className="font-bold my-4 text-lg">
@@ -63,4 +65,6 @@ export function FilmmakerGrid({
                 })}
             </section>
         </section>
+        </div>
+        </div>
     )}

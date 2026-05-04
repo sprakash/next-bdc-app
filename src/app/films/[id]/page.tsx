@@ -29,6 +29,8 @@ export default async function FilmPage({
     const { id } = await params;
     const film = await getFilmById(id);
     return (
+      <div className="px-6 py-5">
+              <div className="max-w-6xl mx-auto">
       <main className="flex flex-col items-center justify-center px-4 py-8 mt-10">
       <Link href="/films" className="mb-5 border-1 bg-blue-100 px-3 py-2">Back to Films</Link>
       <section className="flex-none filmcard:flex gap-4">
@@ -162,5 +164,7 @@ export default async function FilmPage({
         </div>
       </section>
     </main>
+    </div>
+    </div>
   );
 }
