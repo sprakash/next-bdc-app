@@ -14,9 +14,17 @@ The Black Documentary Collective (BDC) was founded by the late, great documentar
 <p className="text-gray-300  pb-8 text-2xl pt-3 md:w-full lg:w-4/5">The BDC is also dedicated to making a difference in the ever-increasing communities that are reflected in and resonate with the varied work of our filmmakers, through community partnerships, impact and engagement.  We have helped countless members raise funds, promote and screen their films, connect with organizational and local partners, and secure distribution, work-for-hire, consulting, teaching, and more.  Please visit the online BDC catalog and directory to connect with our talented members. 
 </p>
    <div>
-                                <iframe title="vimeo-player" src="https://player.vimeo.com/video/898971644?h=7c79b800e7" width="640" height="360" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"   allowfullscreen></iframe>
-
-                </div>
+        <iframe
+        title="vimeo-player"
+        src="https://player.vimeo.com/video/898971644?h=7c79b800e7"
+        width="640"
+        height="360"
+        frameBorder="0"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+        allowFullScreen
+        />
+    </div>
             </div>
             <div className="md:pt-20">
                              <p className="text-gray-300 max-w-2xl pb-8 text-2xl">
